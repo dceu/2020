@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="/2020/style.css">
+    <!-- <link rel="stylesheet" href="/2020/style.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         /* Position */
         /* static ~ default
@@ -11,32 +13,41 @@
         styicky ~ initial flow of document until top of viewport, then behaves like fixed
 
          */
+        
+        a:-webkit-any-link {
+            color: #fff;
+            text-decoration: none;
+        }
+        
         body {
             max-width: 1340px;
-            padding-left: 50px;
+            padding: 0;
             margin: 0;
+            background-color: #efefef;
         }
-
-        html{
+        
+        html {
             padding: 0;
             margin: 0;
         }
-
+        
         #main-nav {
             position: fixed;
             left: 0;
+            top: 0;
             width: 0;
+            padding: 11em 0 0 0;
             height: 100%;
-            border-right: 1px solid #000;
-            background-color: #444444;
-
+            /* border-right: 1px solid #000; */
+            background-color: rgba(29, 33, 44, 1);
             transition: 0.5s;
+            overflow: hidden;
         }
-
+        
         #main-nav>ul {
             list-style: none;
         }
-
+        
         #main-nav>ul>li {
             font-family: "TIActu-Beta-ExBold_web", Tahoma, sans-serif;
             font-weight: bold;
@@ -47,174 +58,214 @@
             color: #fff;
             transition: 0.75s;
         }
-
-        #profile-placeholder{
+        
+        #profile-placeholder {
             width: 200px;
             height: 200px;
             background-color: #fff;
             position: relative;
         }
-
+        
         #content {
             position: relative;
-            margin-left: 400px;
-            padding-left: 4px;
-            max-width: 720px;
+            margin-left: 26em;
+            padding: 0 0 0 4px;
+            max-width: 45em;
+            transition: 0.65s;
         }
-
-        header{
-            background-color: rgba(255,255,255,0);
+        
+        header {
+            font-family: 'Playfair Display', serif;
+            background-color: rgba(29, 33, 44, 1);
+            padding-right: 2em;
             position: fixed;
             top: 0;
             z-index: 99;
-            
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: space-around;
+            /* width: 24.89em; */
         }
-
-        header > h1{
-            float: right;
+        
+        header>h1 {
+            font-size: 4em;
+            color: #fff;
         }
-
-        h1.title {}
-
-        h2.subtopic {
+        
+        header>a {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+        }
+        
+        header>#home-container {
+            padding: 0 10px;
+            /* border: 1px solid black; */
+            /* box-sizing: border-box; */
+            /* float: right; */
+        }
+        
+        #home-container>a {
+            color: #fff;
+        }
+        
+        #home-container>a {}
+        
+        h1.title {
+            font-family: 'Source Serif Pro', serif;
             display: block;
             position: sticky;
-            top: 10px;
-            background-image: linear-gradient(to top, rgba(255, 255, 255, .79), rgba(255, 255, 255, 1));
-            padding-bottom: 5px;
+            left: -5px;
+            top: 5px;
+            background-color: rgba(35, 176, 225, 1);
+            /* background-image: linear-gradient(to top, rgba(255, 255, 255, .79), rgba(255, 255, 255, 1)); */
+            padding: 2px 10px;
+            font-size: 3.25em;
+            box-shadow: 10px 10px rgba(29, 33, 44, .79);
         }
-
+        
+        h2.subtopic {
+            font-family: 'Source Serif Pro', serif;
+            display: block;
+            position: sticky;
+            left: -5px;
+            top: 5px;
+            background-color: rgba(35, 176, 225, 1);
+            /* background-image: linear-gradient(to top, rgba(255, 255, 255, .79), rgba(255, 255, 255, 1)); */
+            padding: 2px 10px;
+            font-size: 2.75em;
+            box-shadow: 10px 10px rgba(29, 33, 44, .79);
+        }
+        
         p {
             font-family: SwiftNeueLTW01, Georgia, serif;
-            font-size: 20px;
+            font-size: 1.25em;
             font-style: normal;
             font-weight: normal;
             letter-spacing: 0.2px;
             line-height: 30px;
             text-transform: none;
             color: #444444;
+            padding-left: .75em;
         }
-
+        
         .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  float: left;
-}
-.openbtn:hover {
-  background-color: #444;
-}
+            font-size: 1.25em;
+            cursor: pointer;
+            background-color: rgba(29, 33, 44, 1);
+            border: 1px solid rgba(29, 33, 44, 1);
+            color: white;
+            padding: 10px 15px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            box-sizing: content-box;
+        }
+        
+        .openbtn:hover {
+            border: 1px solid #fff;
+            box-sizing: content-box;
+        }
+        
+        .openbtn:active {
+            border: none;
+        }
     </style>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <button id ="openbtn" class="openbtn" onclick="openNav()">&#9776; </button>
-        <h1>Donovan Uy</h1>
+        <button id="openbtn" class="openbtn" onclick="openNav()">&#9776; </button>
+
+        <div id="home-container">
+            <h1><a id="home" href="#0">Donovan Uy</a></h1>
+        </div>
+
     </header>
     <div id="main-nav">
         <!-- <button>open menu</button> -->
         <!-- <div id="profile-placeholder"></div> -->
         <ul>
-            <li><a href=#></a>home</li>
-            <li><a href=#></a>about</li>
-            <li><a href=#></a>blog</li>
-            <li><a href=#></a>portfolio</li>
+            <li>
+                <a href=#></a>home</li>
+            <li>
+                <a href=#></a>about</li>
+            <li>
+                <a href=#></a>blog</li>
+            <li>
+                <a href=#></a>portfolio</li>
         </ul>
     </div>
     <div id="content">
-        <h1 class="title"></h1>
-        <p class="meta"></p>
+        <div class="subtopic-container">
+            <h1 class="title">Title</h1>
+            <p class="meta">meta text</p>
+        </div>
+
         <div class="subtopic-container">
             <h2 class="subtopic">Quis nostrud ut commodo esse veniam sunt ex labore proident sunt dolore.</h2>
-            <p class="article-text-italic">Fugiat ullamco id quis ea pariatur minim non cillum sint sit ad. Excepteur
-                mollit cillum duis eu consequat aute. Sit ullamco eu irure commodo amet aliqua velit elit anim.</p>
+            <p class="article-text-italic">Fugiat ullamco id quis ea pariatur minim non cillum sint sit ad. Excepteur mollit cillum duis eu consequat aute. Sit ullamco eu irure commodo amet aliqua velit elit anim.</p>
             </p>
         </div>
         <div class="subtopic-container">
             <h2 class="subtopic">Laborum nulla qui ex reprehenderit officia Lorem id esse cupidatat aliqua.</h2>
-            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla
-                ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et
-                aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et consequat ipsum in veniam officia est
-                consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
-            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla
-                pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui
-                cupidatat elit elit incididunt sit in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore
-                ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo
-                duis cupidatat. </p>
-            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex.
-                Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate.
-                Do quis minim sunt et dolor id sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim
-                adipisicing tempor esse Lorem. </p>
+            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et
+                consequat ipsum in veniam officia est consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
+            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui cupidatat elit elit incididunt sit
+                in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo duis cupidatat. </p>
+            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex. Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate. Do quis minim sunt et dolor id
+                sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim adipisicing tempor esse Lorem. </p>
         </div>
         <div class="subtopic-container">
             <h2 class="subtopic">Laborum nulla qui ex reprehenderit officia Lorem id esse cupidatat aliqua.</h2>
-            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla
-                ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et
-                aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et consequat ipsum in veniam officia est
-                consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
-            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla
-                pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui
-                cupidatat elit elit incididunt sit in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore
-                ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo
-                duis cupidatat. </p>
-            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex.
-                Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate.
-                Do quis minim sunt et dolor id sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim
-                adipisicing tempor esse Lorem. </p>
+            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et
+                consequat ipsum in veniam officia est consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
+            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui cupidatat elit elit incididunt sit
+                in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo duis cupidatat. </p>
+            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex. Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate. Do quis minim sunt et dolor id
+                sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim adipisicing tempor esse Lorem. </p>
         </div>
         <div class="subtopic-container">
             <h2 class="subtopic">Laborum nulla qui ex reprehenderit officia Lorem id esse cupidatat aliqua.</h2>
-            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla
-                ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et
-                aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et consequat ipsum in veniam officia est
-                consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
-            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla
-                pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui
-                cupidatat elit elit incididunt sit in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore
-                ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo
-                duis cupidatat. </p>
-            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex.
-                Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate.
-                Do quis minim sunt et dolor id sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim
-                adipisicing tempor esse Lorem. </p>
+            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et
+                consequat ipsum in veniam officia est consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
+            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui cupidatat elit elit incididunt sit
+                in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo duis cupidatat. </p>
+            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex. Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate. Do quis minim sunt et dolor id
+                sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim adipisicing tempor esse Lorem. </p>
         </div>
         <div class="subtopic-container">
             <h2 class="subtopic">Laborum nulla qui ex reprehenderit officia Lorem id esse cupidatat aliqua.</h2>
-            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla
-                ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et
-                aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et consequat ipsum in veniam officia est
-                consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
-            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla
-                pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui
-                cupidatat elit elit incididunt sit in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore
-                ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo
-                duis cupidatat. </p>
-            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex.
-                Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate.
-                Do quis minim sunt et dolor id sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim
-                adipisicing tempor esse Lorem. </p>
+            <p class="article-text-regular"> Lorem labore ea ad mollit sit nulla nostrud. Magna aliqua velit nisi nulla ea aliqua aliquip enim anim. Ea in occaecat nostrud sunt cillum. Officia duis duis magna nostrud et aliqua ipsum id magna nostrud elit officia qui irure. Aliqua et
+                consequat ipsum in veniam officia est consectetur fugiat. Ex ex deserunt eu labore veniam tempor consequat consectetur non proident duis. </p>
+            <p> Sit anim nisi officia veniam esse. Cupidatat veniam laborum amet enim dolore nisi ea nostrud qui. Nulla pariatur nisi magna ut incididunt esse ullamco aliquip pariatur occaecat in veniam cillum. Nisi qui cupidatat elit elit incididunt sit
+                in. Eiusmod aliquip consequat esse esse quis eiusmod nisi do labore ea. Incididunt amet ullamco enim sunt. Officia adipisicing mollit nulla anim et ex consectetur commodo duis cupidatat. </p>
+            <p> Incididunt qui eiusmod enim et excepteur proident ad cillum do eu non. Quis reprehenderit elit ea ea ex. Tempor qui fugiat sint labore tempor. Aliquip sunt do id dolor do Lorem proident enim fugiat voluptate. Do quis minim sunt et dolor id
+                sunt eiusmod ex anim. Magna occaecat Lorem tempor ipsum deserunt minim adipisicing tempor esse Lorem. </p>
         </div>
         <div class="subtopic-container">
-            <h2 class="subtopic">Adipisicing reprehenderit nostrud incididunt excepteur est anim mollit pariatur eu
-                ipsum.</h2>
+            <h2 class="subtopic">Adipisicing reprehenderit nostrud incididunt excepteur est anim mollit pariatur eu ipsum.
+            </h2>
             <p class="article-text-regular"> Est voluptate exercitation in esse aute esse ut laborum. </p>
         </div>
     </div>
 
     <script>
         function openNav() {
-            document.getElementById("main-nav").style.width = "400px";
+            document.getElementById("main-nav").style.width = "25em";
             document.getElementById("openbtn").innerHTML = "&times;";
             document.getElementById("openbtn").onclick = closeNav;
+            document.getElementById("content").style.marginLeft = "26.225em";
         }
-        function closeNav(){
+
+        function closeNav() {
             document.getElementById("main-nav").style.width = "0";
             document.getElementById("openbtn").innerHTML = "&#9776;";
             document.getElementById("openbtn").onclick = openNav;
+            document.getElementById("content").style.marginLeft = "26em";
         }
     </script>
 </body>
