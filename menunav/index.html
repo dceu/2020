@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Practice With Nested MenuNav Design</title>
+    <style>
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            padding: 16px;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        .inline {
+            display: inline;
+        }
+
+        .clearLeft {
+            clear: left;
+        }
+
+        #content {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .show {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="content">
+            <!-- <h1 class="center">menunav</h1> -->
+            <button onclick="topToggle()" class="dropbtn">Add an Ingredient</button>
+            <div id="menu-top" class="dropdown-content inline ">
+                <button id="liquor-btn" class="dropbtn">Liquor</button>
+                <div class="dropdown-content nested">
+                    <a href=#0>dummy</a>
+                    <a href=#0>dummy</a>
+                    <a href=#0>dummy</a>
+                    <a href=#0>dummy</a>
+                    <a href=#0>dummy</a>
+                </div>
+                <button class="dropbtn">Liqueur</button>
+                <!-- <a href=#0>dummy</a> -->
+                <!-- <a href=#0>dummy</a> -->
+                <!-- <a href=#0>dummy</a> -->
+                <div class="dropdown-content inline clearLeft">
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+                    <!-- <a href=#0>dummy</a> -->
+
+                </div>
+                <button class="dropbtn">Mixer</button>
+                <div class="dropdown-content inline clearLeft">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function topToggle() {
+            document.getElementById("menu-top").classList.toggle("show");
+        }
+
+        
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+        
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

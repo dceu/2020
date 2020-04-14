@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+<title>Colored Boxes</title>
+<style>
+
+    #main {
+    display: block;
+    width: 100%;
+    background-color: rgba(255,255,255,0);
+    text-align: center;
+    overflow-y:hidden;
+    padding: auto;
+}
+
+div > *{
+    margin-top: auto;
+}
+
+html,body {
+    background-color: white;
+}
+
+input {
+    display:none;
+}
+</style>
+</head>
+<body>
+    <!--Change Color Background with arrow keys (L & R) -->
+    <!--Change Opacity of Background with arrow keys (U & D)-->
+    <!--
+        Arrow Key Codes
+        left = 37
+        up = 38
+        right = 39
+        down = 40
+    -->
+    <div id="main">
+        <h1 id="text">Colorboxes trial</h1>
+        <p id="count">Counter</p>
+        <input id="log"></p>
+    
+        
+
+    </div>
+
+    <script type="text/javascript">
+    window.onload = () => {
+    const bg_arr = ['black','blue','green','red'];
+    const bg_rgb = ['255,255,255,','0,0,255,','0,255,0,','255,0,0,'];
+    const alphas = ['.25','.375','.50','.625','.75'];
+    
+    var main = document.getElementById('main');
+    var text = document.getElementById('text');    
+    
+    var xpos = 0;
+    var ypos = 0;
+    var counter = document.getElementById('count');
+    var i = 0;
+    document.onkeydown = function(e) {        
+        if (e.keyCode % 2 != 0){
+            //x transition
+            switch(e.keyCode) {
+                case 37: //left arrow
+                    --xpos; 
+                    if(xpos< 0){xpos = bg_arr.length-1;}
+                    console.log(`x count = ${xpos}`);
+                    i--;
+                    break;
+                case 39: // right arrow
+                    ++xpos; 
+                    if(xpos>bg_arr.length-1){xpos = 0;}
+                    console.log(`x count = ${xpos}`);
+                    i++;
+                    break;   
+            }
+                
+        }
+        else {
+            //ytransition
+            switch (e.keyCode) {
+                case 38: //up arrow
+                   ++ypos;
+                   if(ypos>alphas.length-1){ypos = alphas.length-1;}
+                   console.log(`y count = ${ypos}`);
+                   i++;
+                   break;      
+                case 40: //down arrow
+                    --ypos;
+                    if(ypos<0){ypos = 0;}
+                    console.log(`y count = ${ypos}`);
+                    i--;
+                    break;
+            }
+            
+        }
+    let rgbaString = `rgba(${rgbaBuilder(xpos,ypos)})`;
+    console.log(`background color = ${rgbaString}`);
+    main.style.backgroundColor = rgbaString;
+    
+    counter.innerHTML = i;
+    
+    }
+    
+
+    var rgbaBuilder = function(x,y){
+        var rgba = '';
+        rgba = rgba.concat(bg_rgb[x],alphas[y]);
+        return rgba;
+    }
+    
+    };
+    </script>
+</body>
+
+</html>

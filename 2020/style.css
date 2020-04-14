@@ -1,0 +1,77 @@
+/* Position */
+/* static ~ default
+relative ~ positions relative to where it would be in default position
+absolute ~ references most 'parental' explicitly position element
+fixed ~ references the documentviewport
+styicky ~ initial flow of document until top of viewport, then behaves like fixed
+
+ */
+body {
+    max-width: 1340px;
+    padding-left: 50px;
+    margin: 0;
+}
+
+html{
+    padding: 0;
+    margin: 0;
+}
+
+#main-nav {
+    position: fixed;
+    left: 0;
+    min-width: 400px;
+    max-width: 510px;
+    height: 100%;
+    border-right: 1px solid #000;
+    background-color: #444444;
+}
+
+#main-nav>ul {
+    list-style: none;
+}
+
+#main-nav>ul>li {
+    font-family: "TIActu-Beta-ExBold_web", Tahoma, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    line-height: 2.35;
+    color: #fff;
+}
+
+#profile-placeholder{
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    position: relative;
+}
+
+#content {
+    position: relative;
+    margin-left: 400px;
+    padding-left: 4px;
+    max-width: 720px;
+}
+
+h1.title {}
+
+h2.subtopic {
+    display: block;
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, .79), rgba(255, 255, 255, 1));
+    padding-bottom: 5px;
+}
+
+p {
+    font-family: SwiftNeueLTW01, Georgia, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+    line-height: 30px;
+    text-transform: none;
+    color: #444444;
+}
